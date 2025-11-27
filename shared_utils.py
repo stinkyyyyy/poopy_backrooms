@@ -24,10 +24,18 @@ except ImportError:
 load_dotenv()
 
 # Initialize Anthropic client with API key
-anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+try:
+    anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+except Exception as e:
+    print(f"Warning: Failed to initialize Anthropic client: {e}")
+    anthropic = None
 
 # Initialize OpenAI client
-openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+try:
+    openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+except Exception as e:
+    print(f"Warning: Failed to initialize OpenAI client: {e}")
+    openai_client = None
 
 def call_claude_api(prompt, messages, model_id, system_prompt=None, stream_callback=None):
     """Call the Claude API with the given messages and prompt
