@@ -172,3 +172,4 @@ memory/ai-2/*
 logs/*
 !logs/.gitkeep
 videos/*
+conversation_full.html
